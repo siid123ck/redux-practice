@@ -1,8 +1,8 @@
 const initialState = {
-    count: 122
+    count:11
 }
 
-const store = require("redux").createStore((state=initialState, action)=>{
+const rootReducer = (state=initialState, action)=>{
     switch (action.type) {
         case "INCREAMENT":
             return {...state, count:state.count + 1}
@@ -18,6 +18,6 @@ const store = require("redux").createStore((state=initialState, action)=>{
         default:
             return state;
     }
-})
+}
 
-export default store;
+export default rootReducer;
