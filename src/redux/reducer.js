@@ -1,3 +1,4 @@
+import * as actionTypes from "./actionTypes";
 const initialState = {
     count:11, 
     results:[]
@@ -5,22 +6,22 @@ const initialState = {
 
 const rootReducer = (state=initialState, action)=>{
     switch (action.type) {
-        case "INCREAMENT":
+        case actionTypes.INCREAMENT:
             return {...state, count:state.count + 1}
-        case "DECREAMENT":
+        case actionTypes.DECREAMENT:
             return {...state, count:state.count - 1}
 
-        case "ADD":
+        case actionTypes.ADD:
             return {...state, count:state.count + action.value}
     
-        case "SUB":
+        case actionTypes.SUB:
             return {...state, count:state.count - action.value}
     
-        case "STORE_RESULT":
+        case actionTypes.STORE_RESULT:
             return {
                 ...state, results:state.results.concat({val:state.count, id: new Date()})
             }
-        case "DELETE_RESULT":
+        case actionTypes.DELETE_RESULT:
             const updateResult = state.results.filter(result=>result.id !== action.resultID)
             return {
                 ...state, results:updateResult

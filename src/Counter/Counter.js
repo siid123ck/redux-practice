@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
+import * as actionTypes from "../redux/actionTypes";
 
   class Counter extends React.Component {
    
@@ -28,12 +29,12 @@ const mapStateToProps = state =>({
     results:state.results
 })
 const mapDispatchToProps = dispatch=>({
-    increamentHandler:()=>dispatch({type:"INCREAMENT"}),
-    decreamentHandler:()=>dispatch({type:"DECREAMENT"}),
-    addHandler:()=>dispatch({type:"ADD", value:3}),
-    subHandler:()=>dispatch({type:"SUB", value:3}),
-    storeHandler:()=>dispatch({type:"STORE_RESULT"}),
-    deleteHandler:(id)=>dispatch({type:"DELETE_RESULT", resultID:id} ),
+    increamentHandler:()=>dispatch({type:actionTypes.INCREAMENT}),
+    decreamentHandler:()=>dispatch({type:actionTypes.DECREAMENT}),
+    addHandler:()=>dispatch({type:actionTypes.ADD, value:3}),
+    subHandler:()=>dispatch({type:actionTypes.SUB, value:3}),
+    storeHandler:()=>dispatch({type:actionTypes.STORE_RESULT}),
+    deleteHandler:(id)=>dispatch({type:actionTypes.DELETE_RESULT, resultID:id} ),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
