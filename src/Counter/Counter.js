@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
-import * as actionTypes from "../redux/actionTypes";
+// import * as actionTypes from "../redux/actionTypes";
+import {increament, decreament, add, sub, store_result, delete_result} from "../redux/actionTypes"
 
   class Counter extends React.Component {
    
@@ -13,7 +14,7 @@ import * as actionTypes from "../redux/actionTypes";
                 <button onClick={this.props.decreamentHandler}>Decrease by one</button>
                 <button onClick={this.props.addHandler}>Add random value</button>
                 <button onClick={this.props.subHandler}>Subtract random value</button>
-                <button onClick={this.props.storeHandler}>store result</button>
+                <button onClick={()=>this.props.storeHandler(this.props.value)}>store result</button>
                 <ul>
                     {this.props.results.map((result)=>(
                         <li onClick={()=>this.props.deleteHandler(result.id)} key={result.id}> {result.val}</li>
@@ -25,16 +26,16 @@ import * as actionTypes from "../redux/actionTypes";
 }
 
 const mapStateToProps = state =>({
-    value:state.count, 
-    results:state.results
+    value:state.ctr.count, 
+    results:state.store_res.results
 })
 const mapDispatchToProps = dispatch=>({
-    increamentHandler:()=>dispatch({type:actionTypes.INCREAMENT}),
-    decreamentHandler:()=>dispatch({type:actionTypes.DECREAMENT}),
-    addHandler:()=>dispatch({type:actionTypes.ADD, value:3}),
-    subHandler:()=>dispatch({type:actionTypes.SUB, value:3}),
-    storeHandler:()=>dispatch({type:actionTypes.STORE_RESULT}),
-    deleteHandler:(id)=>dispatch({type:actionTypes.DELETE_RESULT, resultID:id} ),
+    increamentHandler:()=>dispatch(increament()),
+    decreamentHandler:()=>dispatch(decreament()),
+    addHandler:()=>dispatch(add(3)),
+    subHandler:()=>dispatch(sub(6)),
+    storeHandler:(result)=>dispatch(store_result(result)), // if key and value are same we can write just one
+    deleteHandler:(id)=>dispatch(delete_result(id) ),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
